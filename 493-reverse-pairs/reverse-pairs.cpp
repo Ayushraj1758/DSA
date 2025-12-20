@@ -2,7 +2,7 @@ class Solution {
 public:
     void merge(vector<int>& nums, int low, int mid, int high) {
         
-        vector<int> temp(high - low + 1);
+        vector<int> temp(high-low+1);
         int left = low, right = mid + 1, k = 0;
 
         while (left <= mid && right <= high) {
