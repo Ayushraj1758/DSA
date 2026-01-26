@@ -20,15 +20,18 @@ public:
         while(!s1.empty()){
         TreeNode* temp=s1.top();
         s1.pop();
-        s2.push(temp);
+        // s2.push(temp);
+        ans.push_back(temp->val);
         if(temp->left!=NULL)s1.push(temp->left);
         if(temp->right!=NULL)s1.push(temp->right);
 
         }
-        while(!s2.empty()){
-            ans.push_back(s2.top()->val);
-            s2.pop();
-        }
+        //using only one stack
+        // while(!s2.empty()){
+        //     ans.push_back(s2.top()->val);
+        //     s2.pop();
+        // }
+        reverse(ans.begin(),ans.end());
         return ans;
         
     }
