@@ -9,8 +9,7 @@ class Solution {
             return;
         }
         for(int i=x;i<=9;i++){
-
-        
+                if(i>n)break;
                 temp.push_back(i);
                 combination(i+1,k-1,n-i,temp,ans);
                 temp.pop_back();
