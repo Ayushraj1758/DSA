@@ -62,8 +62,9 @@ class Solution {
     bool isMatch(string s, string p) {
         int n=s.size();
         int m=p.size();
-        vector<vector<bool>> dp(n+1,vector<bool>(m+1,false));   
-        dp[0][0]=true;
+        // vector<vector<bool>> dp(n+1,vector<bool>(m+1,false));   
+        vector<bool> prev(n+1,false),cur(m+1,false);
+        prev[0]=true;
         for(int j=1;j<=m;j++){
             bool flag=true;
             for(int k=1;k<=j;k++){
@@ -71,20 +72,22 @@ class Solution {
                     flag=false;break;
                 } 
             } 
-            dp[0][j]=flag;
+            prev[j]=flag;
      }
      for(int i=1;i<=n;i++){
-        dp[i][0]=false;
+        cur[0]=false;
      }
      for(int i=1;i<=n;i++){
         for(int j=1;j<=m;j++){
-            if(s[i-1]==p[j-1] || p[j-1]=='?')dp[i][j]=dp[i-1][j-1];
-            else if(p[j-1]=='*') dp[i][j]=dp[i-1][j] || dp[i][j-1];
-            else  dp[i][j]=false;
+            // cur[0]=false;
+            if(s[i-1]==p[j-1] || p[j-1]=='?')cur[j]=prev[j-1];
+            else if(p[j-1]=='*') cur[j]=prev[j] || cur[j-1];
+            else  cur[j]=false;
 
         }
+        prev=cur;
      }
-     return dp[n][m];
+     return prev[m];
 
     }
 
