@@ -13,20 +13,30 @@ public:
     ListNode* reverseList(ListNode* head) {
         if(head==NULL || head->next==NULL)return head;
         ListNode* temp=head;
-        stack<int> st;
-        while(temp){
-            // ListNode* last=NULL;
-            st.push(temp->val);
-            temp=temp->next;
+        // stack<int> st;
+        // while(temp){
+       
+        //     st.push(temp->val);
+        //     temp=temp->next;
 
-        }
-        temp=head;
+        // }
+        // temp=head;
+        // while(temp){
+        //     temp->val=st.top();
+        //     st.pop();
+        //     temp=temp->next;
+        // }
+        // return head;
+
+        //links changes
+        ListNode* prev=NULL;
         while(temp){
-            temp->val=st.top();
-            st.pop();
-            temp=temp->next;
+            ListNode* x=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=x;
         }
-        return head;
+        return prev;
         
     }
 };
