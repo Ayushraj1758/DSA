@@ -12,7 +12,7 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         if(head==NULL || head->next==NULL)return head;
-        ListNode* temp=head;
+        // ListNode* temp=head;
         // stack<int> st;
         // while(temp){
        
@@ -28,15 +28,22 @@ public:
         // }
         // return head;
 
-        //links changes
-        ListNode* prev=NULL;
-        while(temp){
-            ListNode* x=temp->next;
-            temp->next=prev;
-            prev=temp;
-            temp=x;
-        }
-        return prev;
-        
+        //links changes  iterative
+        // ListNode* prev=NULL;
+        // while(temp){
+        //     ListNode* x=temp->next;
+        //     temp->next=prev;
+        //     prev=temp;
+        //     temp=x;
+        // }
+        // return prev;
+
+        //recursive
+
+        ListNode* newhead=reverseList(head->next);
+        ListNode* front=head->next;
+        front->next=head;
+        head->next=NULL;
+        return newhead;
     }
 };
